@@ -41,5 +41,6 @@ source 'https://rubygems.org'
  gem 'pry'
  # Devise
  gem 'devise'
-
+ # Pundit
+ gem "pundit"
  
