@@ -1,7 +1,7 @@
 class WikiPolicy < ApplicationPolicy
 
   def destroy?
-    user.present? && (user == record.user || user.admin?)
+    user && (user == record.user || user.admin?)
   end
 
   def create?

@@ -4,22 +4,25 @@ require 'faker'
  10.times do
    user = User.new(
        email: Faker::Internet.email,
-       password: Faker::Internet.password(8)
+       password: Faker::Internet.password(10),
+       name: Faker::Name.name
    )
    user.skip_confirmation!
    user.save!
  end
 
+ users = User.all
+
 # Admin User
-user =  User.new(
+admin =  User.new(
       email: 'dhelmick103@gmail.com',
       password: 'helloworld',
-      confirmed_at: DateTime.now
+      confirmed_at: DateTime.now,
     )
-    user.admin!
-    user.save!
+    admin.admin!
+    admin.save!
 
-users = User.all
+
 # Create Wikis
 45.times do
   Wiki.create!(
@@ -28,28 +31,29 @@ users = User.all
     body: Faker::Lorem.paragraph
   )
 end
+Wikis = Wiki.all
 
-# Create Member User
-  member = User.new(
+# Create Standard User
+  standard = User.new(
       username: 'Member',
-      email:    'member@fake.com',
+      email:    'standard@fakemail.com',
       password: 'password1',
       role:     'standard'
   )
-  member.skip_confirmation!
-  member.save!
-end
+  standard.skip_confirmation!
+  standard.save!
+
 
 # Create Premium Member
-member = User.new(
+premium = User.new(
      username: 'Premium',
-     email:    'premium@example.com',
-     password: 'helloworld',
+     email:    'premium@fakemail.com',
+     password: 'password1',
      role:     'premium'
    )
-   member.skip_confirmation!
-   member.save!
-end
+   premium.skip_confirmation!
+   premium.save!
+
 
  puts "Seed finished"
  puts "#{User.count} users created"

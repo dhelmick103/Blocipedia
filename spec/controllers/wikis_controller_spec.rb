@@ -1,6 +1,6 @@
 require 'rails_helper'
-include Devise::TestHelpers
 require 'faker'
+# include Devise::TestHelpers
 
 RSpec.describe WikisController, type: :controller do
   let(:my_user) { create(:user) }
@@ -10,6 +10,7 @@ RSpec.describe WikisController, type: :controller do
   context "admin user doing CRUD on a post they don't own" do
     before do
       other_user.admin!
+      sign_in(other_user)
     end
 
     describe "GET show" do
@@ -19,24 +20,24 @@ RSpec.describe WikisController, type: :controller do
       end
 
       it "renders the #show view" do
-        get :show, wiki_id: my_wiki.id
+        get :show, id: my_wiki.id
         expect(response).to render_template :show
       end
 
       it "assigns my_wiki to @wiki" do
-        get :show, wiki_id: my_wiki.id
+        get :show, id: my_wiki.id
         expect(assigns(:wiki)).to eq(my_wiki)
       end
     end
 
     describe "GET new" do
       it "returns http success" do
-        get :new, wiki_id: my_wiki.id
+        get :new
         expect(response).to have_http_status(:success)
       end
 
       it "renders the #new view" do
-        get :new, wiki_id: my_wiki.id
+        get :new
         expect(response).to render_template :new
       end
 
@@ -276,12 +277,14 @@ RSpec.describe WikisController, type: :controller do
     describe "DELETE destroy" do
       it "returns http redirect" do
         delete :destroy, id: my_wiki.id
-        expect(response).to redirect_to(my_wiki)
+        expect(response).to redirect_to(new_user_session_path)
       end
     end
   end
 
   context "guest user" do
+
+
     describe "GET show" do
       it "returns http success" do
         get :show, id: my_wiki.id

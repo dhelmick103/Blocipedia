@@ -18,6 +18,7 @@ RSpec.describe User, type: :model do
   it { should validate_presence_of(:password) }
   it { should validate_length_of(:password).is_at_least(5) }
 
+
   describe "attributes" do
     it "responds to role" do
       expect(user).to respond_to(:role)
@@ -55,7 +56,7 @@ RSpec.describe User, type: :model do
   end
 
   context "standard user" do
-    it "returns true for #standard?"
+    it "returns true for #standard?" do
       expect(user.standard?).to be_truthy
     end
 
@@ -69,16 +70,24 @@ RSpec.describe User, type: :model do
   end
 
   context "premium user" do
-    it "returns true for #premium?"
+    before do
+      user.premium!
+    end
+
+    it "returns true for #premium?" do
+
       expect(user.premium?).to be_truthy
     end
 
     it "returns false for #standard" do
+      user.standard!
       expect(user.premium?).to be_falsey
     end
 
     it "returns false for #admin" do
+
+
       expect(user.admin?).to be_falsey
     end
   end
-end 
+end

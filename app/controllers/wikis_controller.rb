@@ -1,5 +1,6 @@
 class WikisController < ApplicationController
-#  before_action :require_sign_in, except: [:show]
+  before_action :authenticate_user!, except: :show
+ # require sign_in :require_sign_in, except: [:show]
   # before_action :authorize_user, except: [:index, :show, :new, :create]
 
   def index
@@ -30,11 +31,9 @@ class WikisController < ApplicationController
   end
 
   def edit
-    begin
-      @wiki = Wiki.find(params[:id])
-    rescue
-      flash[:error] = "There was an error editing the post. Please try again."
-      redirect_to :index
+    @wiki = Wiki.find(params[:id])
+    if current_user != @wiki.user && !current_user.admin?
+      redirect_to @wiki
     end
   end
 
@@ -53,7 +52,7 @@ class WikisController < ApplicationController
 
   def update
     @wiki = Wiki.find(params[:id])
-    authorize  @wiki
+    authorize @wiki
     if @wiki.update_attributes(wiki_params)
       flash[:notice] = "Wiki was successfully updated."
       redirect_to @wiki
