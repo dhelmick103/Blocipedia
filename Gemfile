@@ -15,7 +15,7 @@ source 'https://rubygems.org'
  end
 
  group :development, :test do
-   gem 'rspec-rails', '~> 3.0'
+   gem 'rspec-rails'
    gem 'shoulda'
    gem 'faker'
    gem 'factory_girl_rails'
@@ -41,5 +41,5 @@ source 'https://rubygems.org'
  gem 'pry'
  # Devise
  gem 'devise'
-
- 
+ # Pundit
+ gem "pundit"
