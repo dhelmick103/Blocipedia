@@ -43,3 +43,5 @@ source 'https://rubygems.org'
  gem 'devise'
  # Pundit
  gem "pundit"
+ # Stripe
+ gem 'stripe'
