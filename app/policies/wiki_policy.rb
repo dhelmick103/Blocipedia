@@ -14,14 +14,17 @@ class WikiPolicy < ApplicationPolicy
 
   def edit?
     user.present?
+     @wiki.private != true || @wiki.user == @user
   end
 
   def update?
     user.present?
+    @wiki.private != true || @wiki.user == @user
   end
 
   def show?
     private_authentication
+    @wiki.private != true || @wiki.user == @user
   end
 
   class Scope
