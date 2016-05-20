@@ -23,8 +23,8 @@ class WikiPolicy < ApplicationPolicy
   end
 
   def show?
-    private_authentication
-    @wiki.private != true || @wiki.user == @user
+
+    record.private != true || record.user == user
   end
 
   class Scope
