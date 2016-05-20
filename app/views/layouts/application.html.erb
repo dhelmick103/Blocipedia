@@ -17,7 +17,7 @@
         <% if user_signed_in? %>
           Signed in as: <strong><%= current_user.email %>(
               <% if current_user.premium? %>
-                <%= link_to "downgrade", root_path %>
+                <%= link_to "downgrade", downgrade_path %>
               <% else %>
                 <%= link_to "upgrade", new_charge_path %>
               <% end %>

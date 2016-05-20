@@ -14,6 +14,7 @@ class WikisController < ApplicationController
 
   def show
     @wiki = Wiki.find(params[:id])
+    authorize @wiki
   end
 
   def create
@@ -65,14 +66,11 @@ class WikisController < ApplicationController
   private
 
   def wiki_params
-    params.require(:wiki).permit(:title, :body)
-  end
-
-  def authorize_user
-    wiki = Wiki.find(params[:id])
-    if current_user.nil?
-      flash[:alert] = "You must be an admin to do that."
-      redirect_to new_user_session_path
+    if current_user.standard?
+      params.require(:wiki).permit(:title, :body)
+    else
+      params.require(:wiki).permit(:title, :body, :private)
     end
   end
+
 end

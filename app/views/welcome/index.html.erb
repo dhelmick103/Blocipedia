@@ -4,8 +4,9 @@
    <% if current_user.nil? %>
     <p>Share and Create Wikis!</p>
     <p><%= link_to "Sign Up", new_user_registration_path, class: "btn btn-lg btn-success" %></p>
-
     <% else %>
-     <p>Dashboard</p>
-  <% end %>
+      <div class="col-md-6">
+        <p><%= link_to "Free Wiki", new_wiki_path, class: "btn btn-lg btn-success" %></p>
+      </div>
+    <% end %>
  </div>
