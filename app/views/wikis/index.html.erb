@@ -3,7 +3,11 @@
   <div class='media'>
     <div class='media-body'>
       <h4 class='media-heading'>
-        <%= link_to wiki.title, wiki_path(wiki.id) %>
+        <p><%= link_to markdown_to_html(wiki.title), wiki_path(wiki.id) %></p>
+      <small>
+         submitted <%= time_ago_in_words(wiki.created_at) %> ago by
+         <%= wiki.user.name %>
+      </small>
       </h4>
       <p>
         <%= wiki.body %>
