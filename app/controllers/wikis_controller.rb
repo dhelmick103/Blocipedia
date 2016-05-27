@@ -33,9 +33,6 @@ class WikisController < ApplicationController
 
   def edit
     @wiki = Wiki.find(params[:id])
-    if current_user != @wiki.user && !current_user.admin?
-      redirect_to @wiki
-    end
   end
 
   def destroy

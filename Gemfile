@@ -45,3 +45,5 @@ source 'https://rubygems.org'
  gem "pundit"
  # Stripe
  gem 'stripe'
+ # Red Carpet
+ gem 'redcarpet'

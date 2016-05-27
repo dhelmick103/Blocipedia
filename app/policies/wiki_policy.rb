@@ -13,13 +13,11 @@ class WikiPolicy < ApplicationPolicy
   end
 
   def edit?
-    user.present?
-     @wiki.private != true || @wiki.user == @user
+    user.present? && (record.private != true || record.user == user)
   end
 
   def update?
-    user.present?
-    @wiki.private != true || @wiki.user == @user
+    edit?
   end
 
   def show?

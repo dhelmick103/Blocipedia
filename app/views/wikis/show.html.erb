@@ -1,10 +1,9 @@
-
 <div class="media">
   <div class="media-body">
     <div class="media-heading">
-      <h1><%= @wiki.title %></h1>
+      <h1><%= markdown_to_html @wiki.title %></h1>
     </div>
-    <p><%= @wiki.body %></p>
+    <p><%= markdown_to_html @wiki.body %></p>
     <%= link_to 'Edit Wiki', edit_wiki_path(@wiki.id), class: 'btn btn-success' %> <br/>
     <%= link_to 'Delete Wiki', @wiki, class: 'btn btn-danger',
         method: :delete,
