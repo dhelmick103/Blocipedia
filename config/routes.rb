@@ -1,6 +1,8 @@
 Rails.application.routes.draw do
 
-  resources :wikis
+  resources :wikis do
+    resources :collaborators
+  end 
 
   resources :charges, only: [:new, :create]
 
