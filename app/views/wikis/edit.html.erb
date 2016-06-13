@@ -20,3 +20,14 @@
       <% end %>
   <% end %>
 </div>
+<h2>Collaborators</h2>
+<% @wiki.collaborators.each do |collaborator| %>
+  <p class="media-heading">
+    <%= collaborator.user.email %> <%= link_to "remove", [@wiki, collaborator], method: :delete, class: 'btn btn-danger btn-xs' %>
+  </p>
+<% end %>
+<h2>Add Collaborator</h2>
+<%= form_tag [@wiki, Collaborator.new] do %>
+  <%= text_field_tag :email %>
+  <%= submit_tag %>
+<% end %>
