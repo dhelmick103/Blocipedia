@@ -47,3 +47,5 @@ source 'https://rubygems.org'
  gem 'stripe'
  # Red Carpet
  gem 'redcarpet'
+ # Paginate
+ gem 'will_paginate'

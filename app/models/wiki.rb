@@ -4,6 +4,8 @@ class Wiki < ActiveRecord::Base
   has_many :collaborators
   scope :visible_to, -> (user) { user ? all : where(private: false) }
 
+  self.per_page = 20
+
   def public?
     private == false
   end

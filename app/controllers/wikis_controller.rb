@@ -6,7 +6,7 @@ class WikisController < ApplicationController
   def index
     # @wikis = Wiki.all
     @user = current_user
-    @wikis = policy_scope(Wiki)
+    @wikis = policy_scope(Wiki).paginate(:page => params[:page])
   end
 
   def new
