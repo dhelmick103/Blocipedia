@@ -1,6 +1,6 @@
 README
 
-Blocipedia: A Collaborative Wiki website
+Blocipedia: A Collaborative Wiki Website
 
 Created by: Dan Helmick
 

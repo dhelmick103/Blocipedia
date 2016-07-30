@@ -49,3 +49,4 @@ source 'https://rubygems.org'
  gem 'redcarpet'
  # Paginate
  gem 'will_paginate'
+ 
